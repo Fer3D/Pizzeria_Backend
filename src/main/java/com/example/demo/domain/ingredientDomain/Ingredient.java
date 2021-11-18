@@ -23,7 +23,7 @@ public @Getter @Setter class Ingredient  extends EntityBase {
     public String name;
     @Column
     public BigDecimal price;
-    
+
     @Override
     public UUID getId() {
         return id;
