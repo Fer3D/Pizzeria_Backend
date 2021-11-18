@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class IngredientApplicationImpl implements IngredientApplication {
 
-    public  IngredientRepository ingredientRepository; //poner en private
+    private  IngredientRepository ingredientRepository; 
     private  ModelMapper modelMapper;
     private Logger logger;
 
@@ -28,14 +28,17 @@ public class IngredientApplicationImpl implements IngredientApplication {
     public Mono<IngredientDTO> add(CreateOrUpdateIngredientDTO dto) {
         Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
         ingredient.setId(UUID.randomUUID());
-        ingredient.setThisNew(true);
-        ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientRepository.exists(name));
+        //ingredient.setThisNew(true);
+        //ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientRepository.exists(name));
 
+        //El método flatMap le permite reemplazar cada valor de un flujo con otro flujo y luego une todos los flujos generados en un solo flujo
         return this.ingredientRepository.add(ingredient).flatMap( monoIngredient -> {
             logger.info(this.serializeObject(monoIngredient, "added"));
             return Mono.just(this.modelMapper.map(monoIngredient, IngredientDTO.class));
         });
     }
+
+   
     }
 
 

@@ -1,4 +1,4 @@
-package com.bootcampProject.pizzeriabackend.IngredientDto;
+package com.example.demo.IngredientDTO;
 import java.math.BigDecimal;
 import java.util.UUID;
 
