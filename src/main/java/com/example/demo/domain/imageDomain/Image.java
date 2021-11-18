@@ -1,9 +1,8 @@
 package com.example.demo.domain.imageDomain;
 
-
 import javax.validation.constraints.NotEmpty;
 
-//import com.example.demo.core.EntityBase;
+import com.example.demo.domain.EntityBase;
 
 import org.springframework.data.redis.core.RedisHash;
 
