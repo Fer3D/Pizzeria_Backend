@@ -1,17 +1,9 @@
-
-package com.example.demo.IngredientDTO;
-
-
-
+package com.bootcampProject.pizzeriabackend.IngredientDto;
 import java.math.BigDecimal;
-
 import java.util.UUID;
-import lombok.Getter;
-import lombok.Setter;
 
-
-public @Getter @Setter class IngredientDTO {
-    private UUID id;
-    private String name;
-    private BigDecimal price;
+public class IngredientDTO {
+    public UUID id;
+    public String name;
+    public BigDecimal price;
 }
