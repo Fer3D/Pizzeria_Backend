@@ -1,6 +1,6 @@
-package com.bootcampProject.pizzeriaBackend.Domain.IngredientDomain;
+package com.example.demo.IngredientDTO;
 import java.util.UUID;
-import com.bootcampProject.pizzeriaBackend.IngredientDto.IngredientDTO;
+
 
 public class IngredientService {
     

@@ -1,4 +1,4 @@
-package com.bootcampProject.pizzeriaBackend.Domain.IngredientDomain;
+package com.example.demo.domain.ingredientDomain;
 import java.math.BigDecimal;
 import java.util.UUID;
 
