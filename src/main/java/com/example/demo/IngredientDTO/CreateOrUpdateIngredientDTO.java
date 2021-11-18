@@ -7,9 +7,8 @@ import org.springframework.validation.annotation.Validated;
 import lombok.Getter;
 import lombok.Setter;
 
-@Validated
+//@Validated
 public @Getter @Setter class CreateOrUpdateIngredientDTO {
     private String name;
     private BigDecimal price;
-    
 }

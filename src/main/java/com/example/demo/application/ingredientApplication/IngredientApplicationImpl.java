@@ -20,15 +20,34 @@ import reactor.core.publisher.Mono;
 @Service
 public class IngredientApplicationImpl implements IngredientApplication {
 
-    private final IngredientRepository ingredientRepository;
-    
-    private final ModelMapper modelMapper;
-    private final Logger logger;
+    public  IngredientRepository ingredientRepository; //poner en private
+    private  ModelMapper modelMapper;
+    private Logger logger;
+
     @Override
     public Mono<IngredientDTO> add(CreateOrUpdateIngredientDTO dto) {
-        // TODO Auto-generated method stub
-        return null;
+        Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
+        ingredient.setId(UUID.randomUUID());
+        ingredient.setThisNew(true);
+        ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientRepository.exists(name));
+
+        return this.ingredientRepository.add(ingredient).flatMap( monoIngredient -> {
+            logger.info(this.serializeObject(monoIngredient, "added"));
+            return Mono.just(this.modelMapper.map(monoIngredient, IngredientDTO.class));
+        });
     }
+    }
+
+
+
+
+
+
+
+
+
+    
+    /*
     @Override
     public Mono<IngredientDTO> get(UUID id) {
         // TODO Auto-generated method stub

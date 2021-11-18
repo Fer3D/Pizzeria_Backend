@@ -21,6 +21,33 @@ public  class Ingredient {
     @Column("prize")
     public BigDecimal prize;
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getPrize() {
+        return prize;
+    }
+
+    public void setPrize(BigDecimal prize) {
+        this.prize = prize;
+    }
+
+    public void setThisNew(boolean b) {
+    }
+
     
 
 }
