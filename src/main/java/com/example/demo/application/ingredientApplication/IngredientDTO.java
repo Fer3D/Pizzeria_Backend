@@ -1,4 +1,4 @@
-package com.example.demo.IngredientDTO;
+package com.example.demo.application.ingredientApplication;
 import java.math.BigDecimal;
 import java.util.UUID;
 
