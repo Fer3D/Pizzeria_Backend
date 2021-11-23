@@ -1,10 +1,12 @@
 package com.example.demo.infraestructure.ingredientinfraestructure;
 
-import com.example.demo.domain.ingredientDomain.IngredientRepository;
-
 import java.util.UUID;
-import com.example.demo.domain.ingredientDomain.IngredientProjection;
+
 import com.example.demo.domain.ingredientDomain.Ingredient;
+import com.example.demo.domain.ingredientDomain.IngredientProjection;
+import com.example.demo.domain.ingredientDomain.IngredientReadRepository;
+import com.example.demo.domain.ingredientDomain.IngredientWriteRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
@@ -13,12 +15,12 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
-public class IngredientRepositoryImpl implements IngredientRepository {
-
-    private IngredientRepositoryInfract ingredientRepositoryInfract;
+public class IngredientRepositoryImpl implements IngredientWriteRepository, IngredientReadRepository {
+    
+    private final IngredientRepositoryInfract ingredientRepositoryInfract;
 
     @Autowired
-    public IngredientRepositoryImpl (IngredientRepositoryInfract ingredientRepositoryInfract)  {
+    public IngredientRepositoryImpl(IngredientRepositoryInfract ingredientRepositoryInfract){
         this.ingredientRepositoryInfract = ingredientRepositoryInfract;
     }
 
