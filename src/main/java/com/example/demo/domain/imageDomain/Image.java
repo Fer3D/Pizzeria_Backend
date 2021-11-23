@@ -19,9 +19,7 @@ public @Getter @Setter class Image extends EntityBase{
 
     @Override
     public UUID getId() {
-    
         return id;
     }
 
-    
 }

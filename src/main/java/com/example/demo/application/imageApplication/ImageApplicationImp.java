@@ -16,35 +16,24 @@ import org.springframework.stereotype.Service;
 @Service
 public class ImageApplicationImp extends ApplicationBase<Image, UUID> implements ImageApplication{
     private final ImageRepository imageRepository;
-    private final Logger logger;
     private final ModelMapper modelMapper;
 
     @Autowired
     public ImageApplicationImp(final ImageRepository imageRepository,
-                                final ModelMapper modelMapper,
-                                final Logger logger) {
+                                final ModelMapper modelMapper) {
 
         super((id) -> imageRepository.get(id));
         this.imageRepository = imageRepository;
-        this.logger = logger;
         this.modelMapper = modelMapper;
     }
 
     public ImageDTO save(CreateOrUpdateImageDTO dto) throws IOException {
 
-        Image imageEntity = modelMapper.map(dto, Image.class);
-        imageEntity.setId(UUID.randomUUID());
-
-        imageEntity.validate();
-        imageRepository.add(imageEntity);
-        this.logger.info(serializeObject(imageEntity, "added"));
-        
-        return modelMapper.map(imageEntity, ImageDTO.class);
+        throw new RuntimeException();
     }
 
     public BytesDTO get(UUID id) {
 
-        BytesDTO bytesDTO = modelMapper.map(this.findById(id),BytesDTO.class);
-        return bytesDTO;
+        throw new RuntimeException();
     }
 }
