@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.example.demo.domain.EntityBase;
+import com.example.demo.core.EntityBase;
 
 import org.springframework.data.redis.core.RedisHash;
 

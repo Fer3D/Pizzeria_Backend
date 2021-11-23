@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.core;
 
 import java.util.UUID;
 import org.springframework.data.domain.Persistable;

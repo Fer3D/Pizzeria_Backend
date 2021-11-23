@@ -5,25 +5,39 @@ import java.util.UUID;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import com.example.demo.domain.EntityBase;
+import javax.validation.constraints.NotBlank;
 
-import io.micronaut.data.annotation.Id;
+
+import com.example.demo.core.EntityBase;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table 
-public @Getter @Setter class Ingredient extends EntityBase {
-    @Id
-    @Column
-    private UUID id;
-    @Column
-    public String name;
-    @Column
-    public BigDecimal price;
-    
+@Table("ingredients")
+public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase {
+
+    @NotBlank
+    @Column ("id")
+    private  UUID id;
+
+    @NotBlank
+    @Column("name")
+    private String name;
+
+    @Column("price")
+    private BigDecimal price;
+
     @Override
     public UUID getId() {
         return id;
     }
-      
+
+    public String getName() {
+        return name;
+    }
+
+    public void setThisNew(boolean b) {
+    }
+
+
 }
