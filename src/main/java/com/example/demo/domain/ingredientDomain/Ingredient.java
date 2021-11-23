@@ -19,5 +19,9 @@ public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase {
     @Column("price")
     private BigDecimal price;
 
+    @Override
+    public UUID getId() {
+        return id;
+    }
 
 }
