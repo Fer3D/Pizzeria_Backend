@@ -2,23 +2,24 @@ package com.example.demo.core.configurationBeans;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
+import org.springframework.data.redis.core.ReactiveRedisOperations;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfiguration {
-    @Bean
-    JedisConnectionFactory jedisConnectionFactory() {
-        return new JedisConnectionFactory();
-    }
-    
-    @Bean
-    public RedisTemplate<String,byte[]> redisTemplate() {
-        RedisTemplate<String,byte[]> template = new RedisTemplate<>();
-        template.setConnectionFactory(jedisConnectionFactory());
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(new ByteSeriallizer());
-        return template;
-    }
+	@Bean
+	ReactiveRedisOperations<String, byte[]> redisOperations(ReactiveRedisConnectionFactory factory) {
+        ByteSeriallizer setValueSerializer = new ByteSeriallizer();
+
+		RedisSerializationContext.RedisSerializationContextBuilder<String, byte[]> builder =
+		RedisSerializationContext.newSerializationContext(new StringRedisSerializer());
+
+		RedisSerializationContext<String, byte[]> context = builder.value(setValueSerializer).build();
+
+		return new ReactiveRedisTemplate<>(factory, context);
+	}
+
 }
