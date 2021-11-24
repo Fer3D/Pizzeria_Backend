@@ -6,10 +6,8 @@ import com.example.demo.domain.userDomain.User;
 import com.example.demo.domain.userDomain.UserProjection;
 import com.example.demo.domain.userDomain.UserReadRepository;
 import com.example.demo.domain.userDomain.UserWriteRepository;
-import com.example.demo.core.functionalInterfaces.ExistsByField;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import reactor.core.publisher.Flux;
@@ -45,8 +43,5 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
         return this.userRepository.findByCriteria(email);
     }
 
-    @Override
-    public Mono<Boolean> exists(String email) {
-        return this.userRepository.existsByEmail(email);
-    }
+    
 }

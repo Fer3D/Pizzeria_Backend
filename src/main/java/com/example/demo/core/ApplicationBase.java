@@ -18,8 +18,8 @@ public abstract class ApplicationBase<T, ID> {
         this.getById = getById;
     }
 
-    protected String serializeObject(T entity, String messege) {
+    protected String serializeObject(T entity, String message) {
 
-        return String.format("%s %s succesfully.", entity.toString(), messege);
+        return String.format("%s %s succesfully.", entity.toString(), message);
     }
 }
