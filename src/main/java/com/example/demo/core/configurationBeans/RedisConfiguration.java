@@ -18,7 +18,7 @@ public class RedisConfiguration {
         RedisTemplate<String,byte[]> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory());
         template.setKeySerializer(new StringRedisSerializer());
-        //template.setValueSerializer(new ByteSeriallizer());
+        template.setValueSerializer(new ByteSeriallizer());
         return template;
     }
 }
