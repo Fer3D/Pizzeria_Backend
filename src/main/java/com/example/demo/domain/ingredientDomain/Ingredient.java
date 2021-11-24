@@ -14,12 +14,15 @@ import javax.validation.constraints.NotNull;
 
 
 import com.example.demo.core.EntityBase;
+
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Data
 @Table("ingredients")
-public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase {
+public @NoArgsConstructor @Setter class Ingredient extends EntityBase {
 
     @NotBlank
     @Column(nullable = false, unique = true)
@@ -33,17 +36,7 @@ public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase {
     public String toString() {
         return String.format("Ingredient {id: %s, name: %s, price: %s}", this.getId(), this.getName(), this.getPrice());
     }
-
-    @Override
-    public boolean isNew() {
-        return this.isThisNew();
-    }
-
-    @Override
-    public UUID getId() {
-        // TODO Auto-generated method stub
-        return UUID id;
-    }
-
+   
 
 }
+
