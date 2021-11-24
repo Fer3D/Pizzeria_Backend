@@ -2,14 +2,25 @@ package com.example.demo.application.ingredientApplication;
 
 import java.util.UUID;
 
-import org.springframework.validation.annotation.Validated;
-
-import lombok.Getter;
+import lombok.Data;
 import lombok.Setter;
 
-@Validated
-public @Getter @Setter class CreateOrUpdateIngredientDTO {
+@Data
+public @Setter class CreateOrUpdateIngredientDTO {
+    
     private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public UUID getId() {
+        return id;
+    }
+    public void setId(UUID id) {
+        this.id = id;
+    }
     private UUID id;
     
 }
