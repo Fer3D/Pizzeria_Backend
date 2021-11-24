@@ -9,11 +9,10 @@ import com.example.demo.domain.userDomain.Rol;
 import org.springframework.validation.annotation.Validated;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Validated
-public @NoArgsConstructor @Getter @Setter class CreateUserDTO {
+public @Getter @Setter class CreateUserDTO {
 
     @NotBlank
     private String name;

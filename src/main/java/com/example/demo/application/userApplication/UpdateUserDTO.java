@@ -8,11 +8,10 @@ import com.example.demo.domain.userDomain.Rol;
 import org.springframework.validation.annotation.Validated;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Validated
-public @NoArgsConstructor @Getter @Setter class UpdateUserDTO {
+public @Getter @Setter class UpdateUserDTO {
 
     @NotBlank
     private String name;
