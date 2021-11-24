@@ -37,7 +37,7 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
     public Mono<User> update(User user) {
         return this.userRepository.save(user);
     }
-  
+
     @Override
     public Flux<UserProjection> getAll(String email) {
         return this.userRepository.findByCriteria(email);

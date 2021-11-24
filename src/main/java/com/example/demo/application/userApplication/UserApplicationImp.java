@@ -17,7 +17,6 @@ import org.mindrot.jbcrypt.BCrypt;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-
 @Service
 public class UserApplicationImp extends ApplicationBase<User, UUID> implements UserApplication {
 
@@ -45,7 +44,6 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
         user.setId(UUID.randomUUID());
         user.setPassword(BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt()));
         user.setThisNew(true);
-        user.validate("email", user.getEmail(), (email) -> this.userWriteRepository.exists(email));
 
         return this.userWriteRepository.add(user).flatMap( dbUser -> {
             logger.info(this.serializeObject(dbUser, "added"));
@@ -80,15 +78,6 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
                 logger.info(this.serializeObject(user, "updated"));
                 return Mono.just(this.modelMapper.map(user, UserDTO.class));
             });
-        });
-    }
-
-    @Override
-    public Mono<UserDTO> delete(UUID id) {
-
-        return this.findById(id).flatMap(user -> {
-            logger.info(this.serializeObject(user, "deleted"));
-            return this.userWriteRepository.delete(user).then(Mono.just(this.modelMapper.map(user, UserDTO.class)));
         });
     }
 
