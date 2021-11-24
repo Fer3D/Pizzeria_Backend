@@ -12,7 +12,6 @@ import com.example.demo.domain.userDomain.UserProjection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -41,15 +40,9 @@ public class UserController {
         return userDTO.map(user -> ResponseEntity.ok(user)).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping(path = "/{id}")
-    public Mono<ResponseEntity<Void>> delete(@Valid @PathVariable UUID id) {
-        return this.userApplication.delete(id).map( r -> ResponseEntity.ok().<Void>build()).defaultIfEmpty(ResponseEntity.notFound().build());
-    }
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<UserProjection> getAll(
-        @RequestParam(required = false) String email
-    ){
+        @RequestParam(required = false) String email){
         return this.userApplication.getAll(email);
     }
 

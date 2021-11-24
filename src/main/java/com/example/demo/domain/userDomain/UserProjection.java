@@ -1,6 +1,7 @@
 package com.example.demo.domain.userDomain;
 
 import com.example.demo.core.functionalInterfaces.*;
+
 import java.util.UUID;
 
 public interface UserProjection extends FindById<User, UUID>,ExistsByField{
