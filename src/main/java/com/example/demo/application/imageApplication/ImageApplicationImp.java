@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImageApplicationImp extends ApplicationBase<Image, UUID> implements ImageApplication{
+public class ImageApplicationImp /*extends ApplicationBase<Image, UUID>*/ implements ImageApplication{
     private final ImageRepository imageRepository;
     private final ModelMapper modelMapper;
 
@@ -21,18 +21,18 @@ public class ImageApplicationImp extends ApplicationBase<Image, UUID> implements
     public ImageApplicationImp(final ImageRepository imageRepository,
                                 final ModelMapper modelMapper) {
 
-        super((id) -> imageRepository.get(id));
+        /*super((id) -> imageRepository.get(id));*/
         this.imageRepository = imageRepository;
         this.modelMapper = modelMapper;
     }
 
-    public ImageDTO save(CreateOrUpdateImageDTO dto) throws IOException {
+    public ImageDTO save(CreateOrUpdateImageDTO dto) {
 
-        throw new RuntimeException();
+            throw new RuntimeException();
     }
 
-    public BytesDTO get(UUID id) {
+    /*public BytesDTO get(UUID id) {
 
         throw new RuntimeException();
-    }
+    }*/
 }

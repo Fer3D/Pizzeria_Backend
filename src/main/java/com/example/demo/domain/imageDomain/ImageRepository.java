@@ -1,9 +1,11 @@
 package com.example.demo.domain.imageDomain;
 
-import java.util.Optional;
 import java.util.UUID;
+import reactor.core.publisher.Mono;
 
-public interface ImageRepository{  
-    public void add(Image imageEntity);
-    public Optional<Image> get(UUID id);
+public interface ImageRepository {
+
+    public Mono<Image> add(Image image);
+    /*public Mono<byte[]> get(UUID id);*/
+
 }

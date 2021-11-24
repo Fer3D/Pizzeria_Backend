@@ -33,4 +33,10 @@ public @Getter @Setter abstract class EntityBase implements Persistable<UUID> {
     public int hashCode() {
         return this.id.hashCode();
     }
+
+    
+    @Override
+    public UUID getId() {
+        return id;
+    }
 }
