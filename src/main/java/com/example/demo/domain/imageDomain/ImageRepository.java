@@ -1,6 +1,6 @@
 package com.example.demo.domain.imageDomain;
 
-import java.util.UUID;
+//import java.util.UUID;
 import reactor.core.publisher.Mono;
 
 public interface ImageRepository {

@@ -1,8 +1,9 @@
 package com.example.demo.application.imageApplication;
-import java.io.IOException;
-import java.util.UUID;
+
+//import java.util.UUID;
+import reactor.core.publisher.Mono;
 
 public interface ImageApplication {
-    public ImageDTO save(CreateOrUpdateImageDTO dto);
-    /*public BytesDTO get(UUID id);*/
+    public Mono<ImageDTO> add(CreateOrUpdateImageDTO dto);
+    /*public Mono<ImageDTO> getImageRedis(UUID id);*/
 }

@@ -1,11 +1,11 @@
 package com.example.demo.application.imageApplication;
 
-import java.io.IOException;
-import java.util.UUID;
+//import java.io.IOException;
+//import java.util.UUID;
 
-import com.example.demo.domain.imageDomain.Image;
 import com.example.demo.domain.imageDomain.ImageRepository;
-import com.example.demo.core.ApplicationBase;
+//import com.example.demo.domain.imageDomain.Image;
+//import com.example.demo.core.ApplicationBase;
 
 
 import org.modelmapper.ModelMapper;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImageApplicationImp /*extends ApplicationBase<Image, UUID>*/ implements ImageApplication{
+public class ImageApplicationImp implements ImageApplication{
     private final ImageRepository imageRepository;
     private final ModelMapper modelMapper;
 
@@ -21,7 +21,7 @@ public class ImageApplicationImp /*extends ApplicationBase<Image, UUID>*/ implem
     public ImageApplicationImp(final ImageRepository imageRepository,
                                 final ModelMapper modelMapper) {
 
-        /*super((id) -> imageRepository.get(id));*/
+        //super((id) -> imageRepository.get(id));
         this.imageRepository = imageRepository;
         this.modelMapper = modelMapper;
     }
