@@ -2,8 +2,6 @@ package com.example.demo.application.imageApplication;
 
 import com.example.demo.domain.imageDomain.ImageRepository;
 import com.example.demo.domain.imageDomain.Image;
-import com.example.demo.core.ApplicationBase;
-import java.io.IOException;
 import java.util.UUID;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
