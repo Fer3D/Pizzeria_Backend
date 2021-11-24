@@ -1,5 +1,7 @@
 package com.example.demo.domain.imageDomain;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotEmpty;
 
 import com.example.demo.core.EntityBase;
@@ -23,5 +25,6 @@ public @Getter @Setter class Image extends EntityBase{
         this.image = image;
     }
 
-
+    public void setId(UUID randomUUID) {
+    }
 }
