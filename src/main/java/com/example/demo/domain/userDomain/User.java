@@ -1,5 +1,4 @@
 package com.example.demo.domain.userDomain;
-import com.example.demo.domain.userDomain.Rol;
 
 import java.util.UUID;
 
@@ -11,7 +10,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import com.example.demo.core.EntityBase;
-import com.example.demo.domain.userDomain.*;
+
 
 import lombok.Getter;
 import lombok.Setter;
