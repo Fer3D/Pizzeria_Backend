@@ -2,16 +2,10 @@ package com.example.demo.application.userApplication;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import com.example.demo.domain.userDomain.Rol;
-
-import org.springframework.validation.annotation.Validated;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Validated
 public @Getter @Setter class CreateUserDTO {
 
     @NotBlank
@@ -25,7 +19,4 @@ public @Getter @Setter class CreateUserDTO {
 
     @NotBlank
     private String password;
-
-    @NotNull
-    private Rol rol = Rol.USER;
 }

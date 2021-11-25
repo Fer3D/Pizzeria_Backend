@@ -3,23 +3,20 @@ package com.example.demo.infraestructure.userInfraestructure;
 import java.util.UUID;
 
 import com.example.demo.domain.userDomain.User;
-import com.example.demo.domain.userDomain.UserProjection;
-import com.example.demo.domain.userDomain.UserReadRepository;
 import com.example.demo.domain.userDomain.UserWriteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
-public class UserRepositoryImp implements UserWriteRepository, UserReadRepository{
+public class UserRepositoryImp implements UserWriteRepository{
 
     private final UserRepository userRepository;
 
     @Autowired
-    public UserRepositoryImp(final UserRepository userRepository){
+    public UserRepositoryImp(UserRepository userRepository){
         this.userRepository = userRepository;
     }   
 
@@ -34,14 +31,8 @@ public class UserRepositoryImp implements UserWriteRepository, UserReadRepositor
     }
 
     @Override
-    public Mono<User> update(User user) {
-        return this.userRepository.save(user);
+    public Mono<Boolean>exists(String email) {
+        return this.userRepository.existsByEmail(email);
     }
-
-    @Override
-    public Flux<UserProjection> getAll(String email) {
-        return this.userRepository.findByCriteria(email);
-    }
-
     
 }

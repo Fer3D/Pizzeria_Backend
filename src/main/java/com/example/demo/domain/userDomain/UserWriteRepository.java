@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 public interface UserWriteRepository {
     public Mono<User> findById(UUID id); 
     public Mono<User> add(User user);
-    public Mono<User> update(User user);
+    public Mono<Boolean> exists(String email);
 }
 
 
