@@ -34,10 +34,6 @@ public class IngredientController{
         this.ingredientApplicationImpl = ingredientApplicationImpl;
     }
 
-    @GetMapping("/api")
-    public String Hola(){
-        return "Hola Mundo";
-    }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
