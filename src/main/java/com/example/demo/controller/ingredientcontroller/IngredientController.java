@@ -12,7 +12,7 @@ import com.example.demo.application.ingredientApplication.IngredientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +32,11 @@ public class IngredientController{
     @Autowired
     public IngredientController(final IngredientApplicationImpl ingredientApplicationImpl){
         this.ingredientApplicationImpl = ingredientApplicationImpl;
+    }
+
+    @GetMapping("/api")
+    public String Hola(){
+        return "Hola Mundo";
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

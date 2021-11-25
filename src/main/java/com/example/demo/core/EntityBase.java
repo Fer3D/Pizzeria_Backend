@@ -27,11 +27,6 @@ public @Getter @Setter abstract class EntityBase implements Persistable<UUID>{
     }
 
     @Override
-    public UUID getId() {
-        return id;
-    }
-
-    @Override
     public boolean equals (Object obj) {
 
         if (!(obj instanceof EntityBase)){

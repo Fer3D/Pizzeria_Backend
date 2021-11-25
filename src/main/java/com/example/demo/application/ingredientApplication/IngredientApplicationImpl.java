@@ -2,6 +2,8 @@
 package com.example.demo.application.ingredientApplication;
 
 
+import java.util.UUID;
+
 import com.example.demo.domain.ingredientDomain.Ingredient;
 import com.example.demo.domain.ingredientDomain.IngredientWriteRepository;
 import org.modelmapper.ModelMapper;
@@ -28,6 +30,9 @@ public class IngredientApplicationImpl{
     public Mono<IngredientDTO> add(CreateOrUpdateIngredientDTO createorupdateDto) {
 
         Ingredient ingredient = modelMapper.map(createorupdateDto, Ingredient.class);
+        ingredient.setId(UUID.randomUUID());
+        ingredient.setThisNew(true);
+
         return this.ingredientWriteRepository.add(ingredient).flatMap(entity -> Mono.just(this.modelMapper.map(entity, IngredientDTO.class)));
         
     }
