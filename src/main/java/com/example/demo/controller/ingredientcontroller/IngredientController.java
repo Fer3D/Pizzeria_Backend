@@ -4,7 +4,8 @@ package com.example.demo.controller.ingredientcontroller;
 import javax.validation.Valid;
 
 import com.example.demo.application.ingredientApplication.CreateOrUpdateIngredientDTO;
-import com.example.demo.application.ingredientApplication.IngredientApplication;
+
+import com.example.demo.application.ingredientApplication.IngredientApplicationImpl;
 import com.example.demo.application.ingredientApplication.IngredientDTO;
 
 
@@ -26,17 +27,17 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/v1/ingredients")
 public class IngredientController{
     
-    private final IngredientApplication ingredientApplication;
+    private final IngredientApplicationImpl ingredientApplicationImpl;
 
     @Autowired
-    public IngredientController(final IngredientApplication ingredientApplication){
-        this.ingredientApplication = ingredientApplication;
+    public IngredientController(final IngredientApplicationImpl ingredientApplicationImpl){
+        this.ingredientApplicationImpl = ingredientApplicationImpl;
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<IngredientDTO> create(@Valid @RequestBody CreateOrUpdateIngredientDTO dto){
-        Mono<IngredientDTO> ingredientDTO = this.ingredientApplication.add(dto);
+        Mono<IngredientDTO> ingredientDTO = this.ingredientApplicationImpl.add(dto);
 
         return ingredientDTO;
     }

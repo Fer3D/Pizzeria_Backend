@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-public class IngredientApplicationImpl { 
+public class IngredientApplicationImpl{ 
 
     private final IngredientWriteRepository ingredientWriteRepository;
     private final ModelMapper modelMapper;
-   
+  
 
     @Autowired
     public IngredientApplicationImpl (final IngredientWriteRepository ingredientWriteRepository, 
