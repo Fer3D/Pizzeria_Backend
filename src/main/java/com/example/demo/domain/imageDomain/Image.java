@@ -21,10 +21,6 @@ public @Getter @Setter class Image extends EntityBase{
         return image;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
     public void setId(UUID randomUUID) {
     }
 }

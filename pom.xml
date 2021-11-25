@@ -38,24 +38,26 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--  Springboot data -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-r2dbc</artifactId>
 		</dependency>
 
-		<!--  Enable connection pooling -->
 		<dependency>
 			<groupId>io.r2dbc</groupId>
 			<artifactId>r2dbc-pool</artifactId>
 		</dependency>
 
-		<!--  Reactive Mysql -->
 		<dependency>
 			<groupId>dev.miku</groupId>
 			<artifactId>r2dbc-mysql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+        </dependency>
 
 		<dependency>
 			<groupId>org.modelmapper</groupId>
@@ -64,16 +66,11 @@
 		</dependency>
 		
 		<dependency>
-		<groupId>io.kestra</groupId>
-		<artifactId>kestra</artifactId>
-		<version>0.2.13</version>
+			<groupId>io.kestra</groupId>
+			<artifactId>kestra</artifactId>
+			<version>0.2.13</version>
 		</dependency>
 
-		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-        </dependency>
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>

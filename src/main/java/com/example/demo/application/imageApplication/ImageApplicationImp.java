@@ -29,9 +29,9 @@ public class ImageApplicationImp implements ImageApplication{
     @Override
     public Mono<ImageDTO> add(CreateOrUpdateImageDTO dto) {
         Image image = modelMapper.map(dto, Image.class);
-    image.setId(UUID.randomUUID());
-    return this.imageRepository.add(image)
-                               .flatMap(monoImage -> Mono.just(this.modelMapper.map(monoImage, ImageDTO.class)));
+        image.setId(UUID.randomUUID());
+        return this.imageRepository.add(image)
+                                   .flatMap(monoImage -> Mono.just(this.modelMapper.map(monoImage, ImageDTO.class)));
     }
 
     /*public BytesDTO get(UUID id) {
