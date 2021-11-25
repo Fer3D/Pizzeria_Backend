@@ -24,6 +24,11 @@ public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase {
 
     @NotNull @Digits(integer = 3, fraction = 2) @DecimalMin(value = "0.0", inclusive = false)
     private BigDecimal price;
+
+    @Override
+    public boolean isNew() {
+        return this.isThisNew();
+    }
    
 
 }
