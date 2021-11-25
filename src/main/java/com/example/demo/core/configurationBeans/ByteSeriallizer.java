@@ -1,8 +1,8 @@
 package com.example.demo.core.configurationBeans;
 
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.SerializationException;
 
-import io.micronaut.core.serialize.exceptions.SerializationException;
 
 import lombok.NoArgsConstructor;
 
