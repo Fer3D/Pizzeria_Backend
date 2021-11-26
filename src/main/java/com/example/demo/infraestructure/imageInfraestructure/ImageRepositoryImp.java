@@ -24,13 +24,11 @@ public class ImageRepositoryImp implements ImageRepository {
     public Mono<Image> add(Image image) {
         return redisOperations.opsForValue().set(image.getId().toString(), image.getImage(), Duration.ofDays(1))
                 .map(img -> image);
-
     }
 
     /*@Override
     public Mono<byte[]> get(UUID id) {
         return redisOperations.opsForValue().get(id).map(result -> new Id(result, id));
     }*/
-
 }
 

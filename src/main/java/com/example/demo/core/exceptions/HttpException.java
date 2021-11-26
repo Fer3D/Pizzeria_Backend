@@ -8,7 +8,6 @@ public class HttpException extends RuntimeException {
         super(message);
         this.code = code;
     }
-
     public Integer getCode(){
         return this.code;
     }
