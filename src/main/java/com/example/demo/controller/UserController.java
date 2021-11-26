@@ -8,7 +8,6 @@ import com.example.demo.application.userApplication.UserDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +27,9 @@ public class UserController {
     }
     
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ResponseEntity<UserDTO>> create(@Valid @RequestBody CreateUserDTO dto) {
-        Mono<UserDTO> userDTO = this.userApplication.add(dto);
-        return userDTO.map(user -> ResponseEntity.ok(user)).defaultIfEmpty(ResponseEntity.notFound().build());
+    public Mono<UserDTO> create(@Valid @RequestBody CreateUserDTO dto) {
+        return this.userApplication.add(dto);
+
     }
 
 }

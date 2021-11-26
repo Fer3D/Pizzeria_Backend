@@ -8,7 +8,6 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import com.example.demo.core.EntityBase;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;

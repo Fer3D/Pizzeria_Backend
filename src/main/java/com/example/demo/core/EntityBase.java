@@ -3,14 +3,11 @@ package com.example.demo.core;
 import java.util.UUID;
 
 import org.springframework.data.domain.Persistable;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
 import lombok.Getter;
 import lombok.Setter;
-
-
 
 public @Getter @Setter abstract class EntityBase implements Persistable<UUID> {
     
@@ -19,6 +16,11 @@ public @Getter @Setter abstract class EntityBase implements Persistable<UUID> {
 
     @Transient
     protected boolean isThisNew = false;
+
+    @Override
+    public boolean isNew() {
+        return this.isThisNew;
+    }
 
     @Override
     public boolean equals (Object obj) {
@@ -32,5 +34,11 @@ public @Getter @Setter abstract class EntityBase implements Persistable<UUID> {
     @Override
     public int hashCode() {
         return this.id.hashCode();
+    }
+
+    
+    @Override
+    public UUID getId() {
+        return id;
     }
 }

@@ -12,7 +12,7 @@ import org.modelmapper.ModelMapper;
 import reactor.core.publisher.Mono;
 
 @Service
-public class UserApplicationImp {
+public class UserApplicationImp implements UserApplication {
 
     private final UserWriteRepository userWriteRepository;
     private final ModelMapper modelMapper;
