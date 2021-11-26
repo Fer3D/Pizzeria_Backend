@@ -1,10 +1,9 @@
 package com.example.demo.infraestructure.imageInfraestructure;
 
 import java.time.Duration;
-//import java.util.UUID;
+import java.util.UUID;
 
 import com.example.demo.domain.imageDomain.Image;
-import com.example.demo.domain.imageDomain.ImageRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ReactiveRedisOperations;
@@ -22,13 +21,20 @@ public class ImageRepositoryImp implements ImageRepository {
 
     @Override
     public Mono<Image> add(Image image) {
-        return redisOperations.opsForValue().set(image.getId().toString(), image.getImage(), Duration.ofDays(1))
+        return redisOperations.opsForValue()
+                .set(image.getId().toString(), image.getImage(), Duration.ofDays(1))
                 .map(img -> image);
     }
 
-    /*@Override
-    public Mono<byte[]> get(UUID id) {
-        return redisOperations.opsForValue().get(id).map(result -> new Id(result, id));
-    }*/
+    public Mono<Image> getImageRedis(UUID id){
+        return redisOperations.opsForValue()
+                              .get(id.toString())
+                              .flatMap(imageBytes -> {
+                                    Image image = new Image();
+                                    image.setImage(imageBytes);
+                                    image.setId(id);
+                                    return Mono.just(image);
+                                });
+    }
 }
 

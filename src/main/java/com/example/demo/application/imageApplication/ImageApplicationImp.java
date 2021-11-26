@@ -1,7 +1,8 @@
 package com.example.demo.application.imageApplication;
 
-import com.example.demo.domain.imageDomain.ImageRepository;
 import com.example.demo.domain.imageDomain.Image;
+import com.example.demo.infraestructure.imageInfraestructure.ImageRepository;
+
 import java.util.UUID;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,9 @@ public class ImageApplicationImp implements ImageApplication{
     private final ModelMapper modelMapper;
 
     @Autowired
-    public ImageApplicationImp(final ImageRepository imageRepository,
-                               final ModelMapper modelMapper) {
-        //super((id) -> imageRepository.get(id));
+    public ImageApplicationImp(final ImageRepository imageRepository, final ModelMapper modelMapper) {
         this.imageRepository = imageRepository;
         this.modelMapper = modelMapper;
-    }
-
-    public ImageDTO save(CreateOrUpdateImageDTO dto) {
-        throw new RuntimeException();
     }
 
     @Override
@@ -30,10 +25,11 @@ public class ImageApplicationImp implements ImageApplication{
         Image image = modelMapper.map(dto, Image.class);
         image.setId(UUID.randomUUID());
         return this.imageRepository.add(image)
-                                   .flatMap(monoImage -> Mono.just(this.modelMapper.map(monoImage, ImageDTO.class)));
+                .flatMap(monoImage -> Mono.just(this.modelMapper.map(monoImage, ImageDTO.class)));
     }
 
-    /*public BytesDTO get(UUID id) {
-        throw new RuntimeException();
-    }*/
+    public Mono<ImageDTO> getImageRedis(UUID id){
+        return this.imageRepository.getImageRedis(id)
+               .flatMap(monoImage -> Mono.just(this.modelMapper.map(monoImage, ImageDTO.class)));
+      }
 }
