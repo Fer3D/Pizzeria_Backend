@@ -4,13 +4,14 @@ import java.util.UUID;
 
 import com.example.demo.core.ApplicationBase;
 import com.example.demo.domain.ingredientDomain.Ingredient;
+import com.example.demo.domain.ingredientDomain.IngredientProjection;
 import com.example.demo.domain.ingredientDomain.IngredientWriteRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -64,7 +65,11 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
     }
 
     public Mono<Void> delete(UUID id) {
-        
         return this.findById(id).flatMap(ingredient -> this.ingredientWriteRepository.delete(ingredient));
+    }
+
+    @Override
+    public Flux<IngredientProjection> getAll(String name, int page, int size) {
+        return this.ingredientWriteRepository.getAll(name, page, size);
     }
 }

@@ -3,12 +3,14 @@ package com.example.demo.infraestructure.ingredientinfraestructure;
 
 import java.util.UUID;
 import com.example.demo.domain.ingredientDomain.Ingredient;
+import com.example.demo.domain.ingredientDomain.IngredientProjection;
 import com.example.demo.domain.ingredientDomain.IngredientWriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lombok.Getter;
 import lombok.Setter;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
@@ -46,5 +48,9 @@ public @Getter @Setter class IngredientRepositoryImpl implements IngredientWrite
         return this.ingredientRepositoryInfract.delete(ingredient);
     }
 
+    @Override
+    public Flux<IngredientProjection> getAll(String name, int page, int size) {
+        return this.ingredientRepositoryInfract.findByName(name);
+    }
    
 }
