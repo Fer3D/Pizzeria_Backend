@@ -41,5 +41,10 @@ public @Getter @Setter class IngredientRepositoryImpl implements IngredientWrite
         return this.ingredientRepositoryInfract.save(ingredient);
     }
 
+    @Override
+    public Mono<Void> delete(Ingredient ingredient) {
+        return this.ingredientRepositoryInfract.delete(ingredient);
+    }
+
    
 }
