@@ -11,5 +11,6 @@ import reactor.core.publisher.Mono;
 public interface IngredientWriteRepository extends FindById<Ingredient, UUID>, ExistByField {
 
     public Mono<Ingredient> add(Ingredient ingredient);
+    public Mono<Ingredient> update(Ingredient ingredient);
     
 }

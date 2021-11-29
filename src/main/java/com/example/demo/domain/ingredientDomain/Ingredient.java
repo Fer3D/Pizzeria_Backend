@@ -39,7 +39,8 @@ public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase {
     public boolean isNew() {
         return this.isThisNew();
     }
-   
+
+  
 
 }
 

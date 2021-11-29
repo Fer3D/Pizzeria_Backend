@@ -6,10 +6,13 @@ import com.example.demo.domain.ingredientDomain.Ingredient;
 import com.example.demo.domain.ingredientDomain.IngredientWriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import lombok.Getter;
+import lombok.Setter;
 import reactor.core.publisher.Mono;
 
 @Repository
-public class IngredientRepositoryImpl implements IngredientWriteRepository {
+public @Getter @Setter class IngredientRepositoryImpl implements IngredientWriteRepository {
     
     private final IngredientRepositoryInfract ingredientRepositoryInfract;
 
@@ -31,6 +34,11 @@ public class IngredientRepositoryImpl implements IngredientWriteRepository {
     @Override
     public Mono<Boolean> exists(String name) {
         return this.ingredientRepositoryInfract.existsByName(name);
+    }
+
+    @Override
+    public Mono<Ingredient> update(Ingredient ingredient) {
+        return this.ingredientRepositoryInfract.save(ingredient);
     }
 
    
