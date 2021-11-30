@@ -1,7 +1,6 @@
 package com.example.demo.core.exceptions;
 
-public class NotFoundException extends HttpException{
-    
+public class NotFoundException extends HttpException{    
     public NotFoundException(){
         this("Not found exception");
     }

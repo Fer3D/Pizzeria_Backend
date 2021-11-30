@@ -1,32 +1,30 @@
 package com.example.demo.application.userApplication;
 
-
 import com.example.demo.domain.userDomain.User;
-import com.example.demo.domain.userDomain.UserWriteRepository;
-
+import com.example.demo.domain.userDomain.UserRepository;
+import com.example.demo.core.ApplicationBase;
+import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.modelmapper.ModelMapper;
-
 import reactor.core.publisher.Mono;
 
 @Service
-public class UserApplicationImp implements UserApplication {
+public class UserApplicationImp extends ApplicationBase<User, UUID> implements UserApplication {
 
-    private final UserWriteRepository userWriteRepository;
-    private final ModelMapper modelMapper;
+    private UserRepository userRepository;
+    private ModelMapper modelMapper;
 
     @Autowired
-    public UserApplicationImp(final UserWriteRepository userWriteRepository, 
-    final ModelMapper modelMapper) {
-        this.userWriteRepository = userWriteRepository;
+    public UserApplicationImp(UserRepository userRepository, ModelMapper modelMapper) {
+        super(userRepository::findById);
+        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
-
-    public Mono<UserDTO> add(CreateUserDTO createuserdto) {
-        User user = modelMapper.map(createuserdto, User.class);
-        return this.userWriteRepository.add(user).flatMap(entity -> Mono.just(this.modelMapper.map(entity, UserDTO.class)));
+    @Override
+    public Mono<UserOutDTO> add(CreateUserDTO createUserDTO) {
+        User user = modelMapper.map(createUserDTO, User.class);
+        return this.userRepository.add(user).flatMap(entity -> Mono.just(this.modelMapper.map(entity, UserOutDTO.class)));
     }
-    
+
 }

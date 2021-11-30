@@ -11,10 +11,11 @@ public class BadRequestException extends HttpException {
     public BadRequestException(String message) {
         super(400, message);
     }
-    public Map<String, String> getExceptions() {
-        return this.map;
-    }
     public void addException(String key, String message) {
         this.map.put(key, message);
     }
+    public Map<String, String> getExceptions() {
+        return this.map;
+    }
+    
 }
