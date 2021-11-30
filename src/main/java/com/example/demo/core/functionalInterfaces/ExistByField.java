@@ -2,6 +2,7 @@ package com.example.demo.core.functionalInterfaces;
 
 import reactor.core.publisher.Mono;
 
+@FunctionalInterface
 public interface ExistByField {
-    Mono<Boolean> exists(String field);
+    public Mono<Boolean> existsByField(String field);
 }
