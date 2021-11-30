@@ -48,12 +48,12 @@ public @Getter @Setter class IngredientRepositoryImpl implements IngredientWrite
 
     @Override
     public Flux<IngredientProjection> getAll(String name, int page, int size) {
-        return this.ingredientRepositoryInfract.findByName(name);
+        return this.ingredientRepositoryInfract.findAllIngredients(name, page, size);
     }
 
     @Override
-    public Mono<Integer> existByField(String name) {
-         return this.ingredientRepositoryInfract.existsByName(name);
+    public Mono<Boolean> existsByField(String field) {
+        return Mono.sequenceEqual(this.ingredientRepositoryInfract.existByName(field), Mono.just(1));
     }
    
 }
