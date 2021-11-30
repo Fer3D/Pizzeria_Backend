@@ -51,7 +51,7 @@ public @Getter @Setter abstract class EntityBase implements Persistable<UUID>{
     public Mono<Void> validate(String key, String value, ExistByField existsByField){
         
         this.validate();
-        if(existsByField.exists(value).equals(Mono.just(true))){
+        if(existsByField.existsByField(value).equals(Mono.just(true))){
             BadRequestException badRequestException = new BadRequestException();
             badRequestException.addException(key, String.format("Value %s for key %s is duplicated.", value, key));
             return Mono.error(badRequestException); 
