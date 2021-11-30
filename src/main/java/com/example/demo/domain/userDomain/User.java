@@ -37,8 +37,4 @@ public @NoArgsConstructor @Getter @Setter class User extends EntityBase {
                 this.getLastName(), this.getEmail());
     }
 
-    @Override
-    public boolean isNew() {
-        return this.isThisNew;
-    }
 }
