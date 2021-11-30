@@ -41,4 +41,3 @@ public @NoArgsConstructor @Getter @Setter class Ingredient extends EntityBase {
     }
 
 }
-

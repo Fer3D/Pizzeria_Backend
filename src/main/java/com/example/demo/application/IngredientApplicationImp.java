@@ -1,7 +1,9 @@
-package com.example.demo.application.ingredientApplication;
+package com.example.demo.application;
 
 import java.util.UUID;
 
+import com.example.demo.application.ingredientApplication.CreateOrUpdateIngredientDTO;
+import com.example.demo.application.ingredientApplication.IngredientDTO;
 import com.example.demo.core.ApplicationBase;
 import com.example.demo.domain.ingredientDomain.Ingredient;
 import com.example.demo.domain.ingredientDomain.IngredientProjection;
