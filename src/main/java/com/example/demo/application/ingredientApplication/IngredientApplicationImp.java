@@ -6,6 +6,8 @@ import com.example.demo.core.ApplicationBase;
 import com.example.demo.domain.ingredientDomain.Ingredient;
 import com.example.demo.domain.ingredientDomain.IngredientProjection;
 import com.example.demo.domain.ingredientDomain.IngredientWriteRepository;
+import com.example.demo.core.functionalInterfaces.ExistByField;
+
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
 
     private final IngredientWriteRepository ingredientWriteRepository;
     private final ModelMapper modelMapper;
+   
 
     @Autowired
     public IngredientApplicationImp(final IngredientWriteRepository ingredientWriteRepository,
@@ -36,11 +39,10 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
         Ingredient ingredient = modelMapper.map(dto, Ingredient.class);
         ingredient.setId(UUID.randomUUID());
         ingredient.setThisNew(true);
-        //ingredient.validate("name", ingredient.getName(), (name) -> this.ingredientWriteRepository.exists(name));
-
-        return this.ingredientWriteRepository.add(ingredient).flatMap( monoIngredient -> 
-            Mono.just(this.modelMapper.map(monoIngredient, IngredientDTO.class))
-        );
+        ingredient.validate("name", ingredient.getName(), name -> this.ingredientWriteRepository.existsByField(name))
+            .then(this.ingredientWriteRepository.add(ingredient)).flatMap(monoIngredient ->
+         Mono.just(this.modelMapper.map(monoIngredient, IngredientDTO.class))); 
+        
     }
 
     @Override
@@ -53,10 +55,12 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
         return this.findById(id).flatMap( dbIngredient -> {
             if(dbIngredient.getName().equals(dto.getName())){
                 this.modelMapper.map(dto, dbIngredient);
+                dbIngredient.validate();
+                
                 return this.ingredientWriteRepository.update(dbIngredient).flatMap(ingredient -> Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class)));
             } else{
                 this.modelMapper.map(dto, dbIngredient);
-                
+                dbIngredient.validate("name", dbIngredient.getName(), (name) -> this.ingredientWriteRepository.existByField(name));
                 return this.ingredientWriteRepository.update(dbIngredient).flatMap(ingredient -> {
                     return Mono.just(this.modelMapper.map(ingredient, IngredientDTO.class));
                 });

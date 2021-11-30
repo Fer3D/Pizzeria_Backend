@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -33,10 +34,7 @@ public @Getter @Setter class IngredientRepositoryImpl implements IngredientWrite
        return this.ingredientRepositoryInfract.findById(id);
     }
 
-    @Override
-    public Mono<Boolean> exists(String name) {
-        return this.ingredientRepositoryInfract.existsByName(name);
-    }
+    
 
     @Override
     public Mono<Ingredient> update(Ingredient ingredient) {
@@ -51,6 +49,11 @@ public @Getter @Setter class IngredientRepositoryImpl implements IngredientWrite
     @Override
     public Flux<IngredientProjection> getAll(String name, int page, int size) {
         return this.ingredientRepositoryInfract.findByName(name);
+    }
+
+    @Override
+    public Mono<Integer> existByField(String name) {
+         return this.ingredientRepositoryInfract.existsByName(name);
     }
    
 }
