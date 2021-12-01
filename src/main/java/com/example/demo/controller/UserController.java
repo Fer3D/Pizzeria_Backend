@@ -4,8 +4,7 @@ import javax.validation.Valid;
 
 import com.example.demo.application.userApplication.CreateUserDTO;
 import com.example.demo.application.userApplication.UserApplication;
-import com.example.demo.application.userApplication.UserOutDTO;
-
+import com.example.demo.domain.userDomain.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +28,7 @@ public class UserController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<UserOutDTO> create(@Valid @RequestBody CreateUserDTO createUserDTO) {
+    public Mono<User> create(@Valid @RequestBody CreateUserDTO createUserDTO) {
         return this.userApplication.add(createUserDTO);
     }
 }

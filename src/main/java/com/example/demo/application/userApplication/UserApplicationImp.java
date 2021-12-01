@@ -22,9 +22,11 @@ public class UserApplicationImp extends ApplicationBase<User, UUID> implements U
         this.modelMapper = modelMapper;
     }
     @Override
-    public Mono<UserOutDTO> add(CreateUserDTO createUserDTO) {
+    public Mono<User> add(CreateUserDTO createUserDTO) {
         User user = modelMapper.map(createUserDTO, User.class);
-        return this.userRepository.add(user).flatMap(entity -> Mono.just(this.modelMapper.map(entity, UserOutDTO.class)));
+        user.setId(UUID.randomUUID());
+        return userRepository.add(user);
+        //.flatMap(entity -> Mono.just(this.modelMapper.map(entity, UserOutDTO.class)));
     }
 
 }
