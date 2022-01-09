@@ -1,7 +1,9 @@
-package com.example.demo.application.ingredientApplication;
+package com.example.demo.application;
 
 import java.util.UUID;
 
+import com.example.demo.application.ingredientApplication.CreateOrUpdateIngredientDTO;
+import com.example.demo.application.ingredientApplication.IngredientDTO;
 import com.example.demo.core.ApplicationBase;
 import com.example.demo.domain.ingredientDomain.Ingredient;
 import com.example.demo.domain.ingredientDomain.IngredientProjection;
@@ -12,14 +14,12 @@ import org.springframework.stereotype.Service;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import org.slf4j.Logger;
 
 @Service
 public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> implements IngredientApplication {
 
     private final IngredientWriteRepository ingredientWriteRepository;
     private final ModelMapper modelMapper;
-    private Logger logger;
 
     @Autowired
     public IngredientApplicationImp(final IngredientWriteRepository ingredientWriteRepository,
@@ -75,8 +75,8 @@ public class IngredientApplicationImp extends ApplicationBase<Ingredient, UUID> 
     }
 
     @Override
-    public Flux<IngredientProjection> getAll(String name, Integer limit, Integer offset) {
-        return this.ingredientWriteRepository.getAll(name, limit, offset);
+    public Flux<IngredientProjection> getAll(String name, int page, int size) {
+        return this.ingredientWriteRepository.getAll(name, page, size);
     }
 
 }
