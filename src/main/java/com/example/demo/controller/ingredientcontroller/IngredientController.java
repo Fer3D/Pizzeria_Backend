@@ -12,7 +12,6 @@ import com.example.demo.domain.ingredientDomain.IngredientProjection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,42 +37,44 @@ public class IngredientController{
    
 
     @Autowired
-    public IngredientController(final IngredientApplication ingredientApplication){
+    public IngredientController(IngredientApplication ingredientApplication){
         this.ingredientApplication = ingredientApplication;
     }
 
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<IngredientDTO> create(@Valid @RequestBody CreateOrUpdateIngredientDTO dto){
+    public Mono<IngredientDTO> add(@Valid @RequestBody CreateOrUpdateIngredientDTO dto){
         Mono<IngredientDTO> ingredientDTO = this.ingredientApplication.add(dto);
-
-        return ingredientDTO;
+            return ingredientDTO;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,  path = "/{id}")
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Mono<IngredientDTO>get(@Valid @PathVariable UUID id) {
         return this.ingredientApplication.get(id);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<IngredientDTO> update(@PathVariable UUID id, @Valid @RequestBody CreateOrUpdateIngredientDTO dto) {
         return this.ingredientApplication.update(id, dto);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void>delete(@PathVariable UUID id) {
         return this.ingredientApplication.delete(id);
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public Flux<IngredientProjection> getAll(
         @RequestParam(required = false) String name,
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "10") int size
-    )
-    {
-        return this.ingredientApplication.getAll(name, page, size);
+        @RequestParam(defaultValue = "10") Integer limit,
+		@RequestParam(defaultValue = "0") Integer offset) {
+		return this.ingredientApplication.getAll(name, limit, offset);
+    
     }
            
 }
