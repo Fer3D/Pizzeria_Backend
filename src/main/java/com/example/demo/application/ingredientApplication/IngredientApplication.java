@@ -10,6 +10,6 @@ public interface IngredientApplication {
     public Mono<IngredientDTO> get(UUID id);
     public Mono<IngredientDTO> update(UUID id, CreateOrUpdateIngredientDTO dto);
     public Mono<Void> delete(UUID id);
-    public Flux<IngredientProjection> getAll(String name,  int page, int size);
+    public Flux<IngredientProjection> getAll(String name,  Integer limit, Integer offset);
 
 }
